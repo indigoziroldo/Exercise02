@@ -6,6 +6,9 @@ import br.edu.fema.modelo.atividadesfixacao.atividades.application.service.Churr
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -15,7 +18,17 @@ public class ChurrascoServiceImpl implements ChurrascoService {
     private final ChurrascoRepository churrascoRepository;
 
     @Override
-    public List<ChurrascoEntity> buscarTodosChurrasco() {
+    public List<ChurrascoEntity> buscarTodosChurrascos() {
         return churrascoRepository.findAll();
     }
+
+    @Override
+    public List<ChurrascoEntity> buscarTodosChurrascosPorData(String dataBusca) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
+        LocalDateTime dataConvertida = (LocalDateTime.parse(dataBusca, formatter));
+        return churrascoRepository
+                .findByDataInicioGreaterThanEqual(dataConvertida);
+
+    }
+
 }

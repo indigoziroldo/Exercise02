@@ -6,5 +6,7 @@ import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.entiti
 import java.util.List;
 
 public interface ChurrascoService {
-    List<ChurrascoEntity> buscarTodosChurrasco();
+    List<ChurrascoEntity> buscarTodosChurrascos();
+
+    List<ChurrascoEntity> buscarTodosChurrascosPorData(String dataBusca);
 }

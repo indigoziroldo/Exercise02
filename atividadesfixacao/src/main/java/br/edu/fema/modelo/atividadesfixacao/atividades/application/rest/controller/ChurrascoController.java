@@ -4,6 +4,7 @@ import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.entiti
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.service.ChurrascoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,11 +17,14 @@ public class ChurrascoController {
 
     private final ChurrascoService churrascoService;
 
-    @GetMapping
-    public List<ChurrascoEntity> buscarTodosChurrasco (){
-        return churrascoService.buscarTodosChurrasco();
+    @GetMapping("/buscarTodos")
+    public List<ChurrascoEntity> buscarTodosChurrascos (){
+        return churrascoService.buscarTodosChurrascos();
     }
 
-
+    @GetMapping("/buscarTodosPorData/{dataBusca}")
+    public List<ChurrascoEntity> buscarTodosChurrascosPorData(@PathVariable String dataBusca){
+        return churrascoService.buscarTodosChurrascosPorData(dataBusca);
+    }
 
 }
