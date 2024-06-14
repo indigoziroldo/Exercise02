@@ -31,4 +31,9 @@ public class ChurrascoServiceImpl implements ChurrascoService {
 
     }
 
+    @Override
+    public List<ChurrascoEntity> buscarTodosChurrascosEntreDuasDatas(String dataBusca) {
+
+        return null;
+    }
 }

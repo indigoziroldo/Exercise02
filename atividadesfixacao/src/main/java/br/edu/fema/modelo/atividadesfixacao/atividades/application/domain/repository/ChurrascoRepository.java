@@ -10,4 +10,6 @@ import java.util.List;
 public interface ChurrascoRepository extends JpaRepository<ChurrascoEntity, Long> {
 
     List<ChurrascoEntity> findByDataInicioGreaterThanEqual(LocalDateTime dataBusca);
+
+    List<ChurrascoEntity> findByDataInicioBetweenAndDataInicio (LocalDateTime dataInicio, LocalDateTime dataInicio2, LocalDateTime dataInicio3);
 }

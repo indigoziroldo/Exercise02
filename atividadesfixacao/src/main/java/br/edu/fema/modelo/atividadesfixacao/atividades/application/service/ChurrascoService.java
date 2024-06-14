@@ -9,4 +9,6 @@ public interface ChurrascoService {
     List<ChurrascoEntity> buscarTodosChurrascos();
 
     List<ChurrascoEntity> buscarTodosChurrascosPorData(String dataBusca);
+
+    List<ChurrascoEntity> buscarTodosChurrascosEntreDuasDatas(String dataBusca);
 }
