@@ -4,10 +4,7 @@ import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.entiti
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.service.ChurrascoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,9 +26,12 @@ public class ChurrascoController {
         return churrascoService.buscarTodosChurrascosPorData(dataBusca);
     }
 
-    @GetMapping("/buscarTodosEntreDuasDatas/{dataBusca}")
-    public List<ChurrascoEntity> buscarTodosChurrascosEntreDuasDatas(@PathVariable String dataBusca){
-        return churrascoService.buscarTodosChurrascosEntreDuasDatas(dataBusca);
+    @GetMapping("/buscarTodosEntreDuasDatas/")
+    public List<ChurrascoEntity> buscarTodosChurrascosEntreDuasDatas(@RequestParam(name = "dataInicio") String dataBuscaInicio,
+                                                                     @RequestParam(name = "dataFim") String dataBuscaFim){
+        return churrascoService.buscarTodosChurrascosEntreDuasDatas(dataBuscaInicio,dataBuscaFim);
     }
+
+
 
 }

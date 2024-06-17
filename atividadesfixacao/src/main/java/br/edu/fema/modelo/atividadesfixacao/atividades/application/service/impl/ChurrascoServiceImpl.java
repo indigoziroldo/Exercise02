@@ -17,6 +17,8 @@ public class ChurrascoServiceImpl implements ChurrascoService {
 
     private final ChurrascoRepository churrascoRepository;
 
+    public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
+
     @Override
     public List<ChurrascoEntity> buscarTodosChurrascos() {
         return churrascoRepository.findAll();
@@ -24,7 +26,6 @@ public class ChurrascoServiceImpl implements ChurrascoService {
 
     @Override
     public List<ChurrascoEntity> buscarTodosChurrascosPorData(String dataBusca) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
         LocalDateTime dataConvertida = (LocalDateTime.parse(dataBusca, formatter));
         return churrascoRepository
                 .findByDataInicioGreaterThanEqual(dataConvertida);
@@ -32,8 +33,10 @@ public class ChurrascoServiceImpl implements ChurrascoService {
     }
 
     @Override
-    public List<ChurrascoEntity> buscarTodosChurrascosEntreDuasDatas(String dataBusca) {
-
-        return null;
+    public List<ChurrascoEntity> buscarTodosChurrascosEntreDuasDatas(String dataBuscaInicio, String dataBuscaFim) {
+        LocalDateTime dataConvertida1 = (LocalDateTime.parse(dataBuscaInicio, formatter));
+        LocalDateTime dataConvertida2 = (LocalDateTime.parse(dataBuscaFim, formatter));
+        return churrascoRepository
+                .findAllByDataInicioBetween(dataConvertida1,dataConvertida2);
     }
 }
