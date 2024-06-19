@@ -28,11 +28,11 @@ public class AlimentoEntity {
     @Column
     private BigDecimal valor;
 
-    //@Column(name = "id_tipo_alimento")
-    //private Long idTipoAlimento;
+    @Column(name = "id_tipo_alimento")
+    private Long idTipoAlimento;
 
     @ManyToOne
-    @JoinColumn(name = "id_tipo_alimento" )
+    @JoinColumn(name = "id_tipo_alimento" , updatable = false, insertable = false)
     private TipoAlimentoEntity tipoAlimento;
 
 }
