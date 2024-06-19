@@ -25,8 +25,8 @@ public class ChurrascoServiceImpl implements ChurrascoService {
     private final PessoaRepository pessoaRepository;
 
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
-    public List<ChurrascoEntity> listaChurrasco = this.churrascoRepository.findAll();
-    public List<PessoaEntity> listaPessoa = this.pessoaRepository.findAll();
+    //public List<ChurrascoEntity> listaChurrasco = this.churrascoRepository.findAll();
+    //public List<PessoaEntity> listaPessoa = this.pessoaRepository.findAll();
 
     @Override
     public List<ChurrascoEntity> buscarTodosChurrascos() {
@@ -51,17 +51,22 @@ public class ChurrascoServiceImpl implements ChurrascoService {
 
     @Override
     public List<ValorPessoaDTO> buscarAlimentosPorValor() {
-        return listaPessoa
-                .stream()
-                .map(p -> {
-                  return new ValorPessoaDTO()
-                           .builder()
-                           .nomePessoa(listaPessoa.forEach(pessoaEntity -> {
-                               pessoaEntity.getNome();
-                           });)
-                          .valorTotal(BigDecimal.ONE)
-                          .alimento(new ArrayList<>())
-                           .build();
-                }).toList();
+        return null;
     }
+
+//    @Override
+//    public List<ValorPessoaDTO> buscarAlimentosPorValor() {
+//        return listaPessoa
+//                .stream()
+//                .map(p -> {
+//                  return new ValorPessoaDTO()
+//                           .builder()
+//                           .nomePessoa(listaPessoa.forEach(pessoaEntity -> {
+//                               pessoaEntity.getNome();
+//                           });)
+//                          .valorTotal(BigDecimal.ONE)
+//                          .alimento(new ArrayList<>())
+//                           .build();
+//                }).toList();
+//    }
 }

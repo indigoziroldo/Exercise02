@@ -17,7 +17,7 @@ public class AlimentoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Setter(AccessLevel.NONE)
+    //@Setter(AccessLevel.NONE)
     private UUID id;
 
     //    descricao VARCHAR(50),
@@ -28,7 +28,11 @@ public class AlimentoEntity {
     @Column
     private BigDecimal valor;
 
-    @OneToMany(mappedBy = "alimento")
-    private List<TipoAlimentoEntity> tipoAlimento;
+    //@Column(name = "id_tipo_alimento")
+    //private Long idTipoAlimento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_alimento" )
+    private TipoAlimentoEntity tipoAlimento;
 
 }

@@ -4,9 +4,11 @@ package br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.entit
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor @ToString
 
 @Entity
 @Table(name = "tipo_comes_e_bebes")
@@ -19,8 +21,4 @@ public class TipoAlimentoEntity {
 
     @Column
     private String descricao;
-
-    @ManyToOne
-    @JoinColumn(name = "id_alimento")
-    private AlimentoEntity alimento;
 }
