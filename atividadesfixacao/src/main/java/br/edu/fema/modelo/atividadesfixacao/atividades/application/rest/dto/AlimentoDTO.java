@@ -32,6 +32,10 @@ public class AlimentoDTO {
         this.tipoAlimentoDTO = new TipoAlimentoDTO(alimentoEntity.getTipoAlimento());
     }
 
+//    public static AlimentoDTO converter(AlimentoEntity alimento){
+//        return AlimentoDTO ali;
+//    }
+
     public static List<AlimentoDTO> converter(List<AlimentoEntity> listaDeAlimento){
         return listaDeAlimento.stream().map(AlimentoDTO::new).collect(Collectors.toList());
     }
