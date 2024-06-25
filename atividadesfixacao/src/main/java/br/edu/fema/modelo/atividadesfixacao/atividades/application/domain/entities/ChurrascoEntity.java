@@ -6,11 +6,13 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "xhurrasco", schema = "public")
 public class ChurrascoEntity {
@@ -25,8 +27,20 @@ public class ChurrascoEntity {
     @Column(name = "data_fim")
     private LocalDateTime dataFim;
 
+
+    @Column(name = "id_local")
+    private UUID idLocal;
+
+    @ManyToOne
+    @JoinColumn(name = "id_local", updatable = false, insertable = false)
+    private LocalEntity local;
+
+
+    @Column(name = "id_anfitriao")
+    private Long idAnfitriao;
+
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_anfitriao", updatable = false, insertable = false)
     private PessoaEntity anfitriao;
 
 }

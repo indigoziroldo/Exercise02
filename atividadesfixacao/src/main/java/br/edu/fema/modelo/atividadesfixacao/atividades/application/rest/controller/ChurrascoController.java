@@ -2,9 +2,12 @@ package br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.control
 
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.entities.ChurrascoEntity;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.dto.ValorPessoaDTO;
+import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.forms.ChurrascoForm;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.service.ChurrascoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.List;
 public class ChurrascoController {
 
     private final ChurrascoService churrascoService;
+
 
     @GetMapping("/buscarTodos")
     public List<ChurrascoEntity> buscarTodosChurrascos (){
@@ -61,4 +65,19 @@ public class ChurrascoController {
         .                                    /,,,/
                                C R U D
      */
+
+    // CREATE
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(path = "/criarChurrasco")
+    public void criarChurrasco(@RequestBody @Valid ChurrascoForm churrascoForm){
+        this.churrascoService.criarChurrasco(churrascoForm);
+    }
+
+
+    // READ
+
+    // UPDATE
+
+    // DELETE
+
 }

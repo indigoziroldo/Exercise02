@@ -52,11 +52,13 @@ CREATE TABLE xhurrasco
     id INTEGER AUTO_INCREMENT,
     data_inicio TIMESTAMP,
     data_fim TIMESTAMP,
-    anfitriao INTEGER,
+    id_anfitriao INTEGER,
     id_local UUID,
 
     CONSTRAINT id_churrasco_pk PRIMARY KEY(id),
-    CONSTRAINT anfitriao_churrasco FOREIGN KEY(anfitriao) REFERENCES pessoa(id)
+    CONSTRAINT anfitriao_churrasco_id_fk FOREIGN KEY(id_anfitriao) REFERENCES pessoa(id),
+    CONSTRAINT local_id_fk FOREIGN KEY (id_local) REFERENCES local(id)
+
 );
 
 
