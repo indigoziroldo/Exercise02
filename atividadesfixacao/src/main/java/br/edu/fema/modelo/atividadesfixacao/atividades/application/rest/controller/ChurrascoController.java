@@ -1,6 +1,7 @@
 package br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.controller;
 
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.entities.ChurrascoEntity;
+import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.dto.ChurrascoDTO;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.dto.ValorPessoaDTO;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.forms.ChurrascoForm;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.service.ChurrascoService;
@@ -21,10 +22,10 @@ public class ChurrascoController {
     private final ChurrascoService churrascoService;
 
 
-    @GetMapping("/buscarTodos")
-    public List<ChurrascoEntity> buscarTodosChurrascos (){
-        return churrascoService.buscarTodosChurrascos();
-    }
+//    @GetMapping("/buscarTodos")
+//    public List<ChurrascoEntity> buscarTodosChurrascos (){
+//        return churrascoService.buscarTodosChurrascos();
+//    }
 
     @GetMapping("/buscarTodosPorData/{dataBusca}")
     public List<ChurrascoEntity> buscarTodosChurrascosPorData(@PathVariable String dataBusca){
@@ -37,10 +38,10 @@ public class ChurrascoController {
         return churrascoService.buscarTodosChurrascosEntreDuasDatas(dataBuscaInicio,dataBuscaFim);
     }
 
-    @GetMapping("/buscarAlimentosPorValor/")
-    public List<ValorPessoaDTO> buscarAlimentosPorValor(){
-        return churrascoService.buscarAlimentosPorValor();
-    }
+//    @GetMapping("/buscarAlimentosPorValor/")
+//    public List<ValorPessoaDTO> buscarAlimentosPorValor(){
+//        return churrascoService.buscarAlimentosPorValor();
+//    }
 
 
     /*
@@ -75,9 +76,27 @@ public class ChurrascoController {
 
 
     // READ
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @GetMapping(path = "/buscarChurrascos")
+    public List<ChurrascoDTO> buscarTodosOsChurrascos(){
+        return this.churrascoService.buscarTodosOsChurrascos();
+    }
 
     // UPDATE
+    @ResponseStatus(HttpStatus.MOVED_PERMANENTLY)
+    @PutMapping(path = "/atualizarChurrasco/{id}")
+    public void atualizarChurrasco(@RequestBody ChurrascoForm churrascoForm, @PathVariable long id){
+        churrascoService.atualizarChurrasco(churrascoForm, id);
+    }
+
 
     // DELETE
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping(path = "/deletarChurrasco/{id}")
+    public String deletarChurrascoPorId(@PathVariable long id){
+        churrascoService.deletarChurrascoPorId(id);
+        return "Deletado";
+    }
+
 
 }

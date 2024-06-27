@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -14,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "xhurrasco", schema = "public")
+@Table(name = "xhurrasco", schema = "atividade_fixacao")
 public class ChurrascoEntity {
 
     @Id
@@ -28,19 +26,19 @@ public class ChurrascoEntity {
     private LocalDateTime dataFim;
 
 
-    @Column(name = "id_local")
-    private UUID idLocal;
+    @Column(name = "id_lugar")
+    private UUID idLugar;
 
     @ManyToOne
-    @JoinColumn(name = "id_local", updatable = false, insertable = false)
-    private LocalEntity local;
+    @JoinColumn(name = "id_lugar", updatable = false, insertable = false)
+    private LugarEntity lugar;
 
 
-    @Column(name = "id_anfitriao")
+    @Column(name = "anfitriao")
     private Long idAnfitriao;
 
     @OneToOne
-    @JoinColumn(name = "id_anfitriao", updatable = false, insertable = false)
+    @JoinColumn(name = "anfitriao", updatable = false, insertable = false)
     private PessoaEntity anfitriao;
 
 }

@@ -11,8 +11,8 @@ import java.util.UUID;
 
 
 @jakarta.persistence.Entity
-@Table(name = "local")
-public class LocalEntity {
+@Table(name = "lugar", schema = "atividade_fixacao")
+public class LugarEntity {
 
     // ID
     @Id
@@ -35,8 +35,5 @@ public class LocalEntity {
     @Embedded
     private Endereco endereco;
 
-    @ManyToOne
-    @JoinColumn(name = "id_churrasco")
-    private ChurrascoEntity churrasco;
 
 }

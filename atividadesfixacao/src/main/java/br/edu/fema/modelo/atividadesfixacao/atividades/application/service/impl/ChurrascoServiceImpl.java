@@ -1,27 +1,20 @@
 package br.edu.fema.modelo.atividadesfixacao.atividades.application.service.impl;
 
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.entities.ChurrascoEntity;
-import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.entities.PessoaEntity;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.repository.ChurrascoRepository;
-import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.repository.LocalRepository;
+import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.repository.LugarRepository;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.repository.PessoaRepository;
-import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.dto.AlimentoDTO;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.dto.ChurrascoDTO;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.dto.ValorPessoaDTO;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.forms.ChurrascoForm;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.service.ChurrascoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +23,7 @@ public class ChurrascoServiceImpl implements ChurrascoService {
 
     private final ChurrascoRepository churrascoRepository;
     private final PessoaRepository pessoaRepository;
-    private final LocalRepository localRepository;
+    private final LugarRepository lugarRepository;
 
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
     //public List<ChurrascoEntity> listaChurrasco = this.churrascoRepository.findAll();
@@ -104,13 +97,13 @@ public class ChurrascoServiceImpl implements ChurrascoService {
     @Transactional
     public void criarChurrasco(ChurrascoForm churrascoForm){
         ChurrascoEntity churrascoCriado = new ChurrascoEntity();
-        churrascoCriado.setAnfitriao(churrascoCriado.getAnfitriao());
-        churrascoCriado.setDataInicio(churrascoCriado.getDataInicio());
-        churrascoCriado.setDataFim(churrascoCriado.getDataFim());
+        churrascoCriado.setIdAnfitriao(churrascoForm.getIdAnfitriao());
+        churrascoCriado.setDataInicio(LocalDateTime.parse(churrascoForm.getDataInicio()));
+        churrascoCriado.setDataFim(LocalDateTime.parse(churrascoForm.getDataFim()));
         this.churrascoRepository.save(churrascoCriado);
     }
 
-    // READ
+//     READ
     public List<ChurrascoDTO> buscarTodosOsChurrascos(){
         List<ChurrascoEntity> listadeChurrascos = this.churrascoRepository.findAll();
         if(listadeChurrascos.isEmpty()) throw new RuntimeException("Lista de churrasco está vazia");
@@ -119,13 +112,13 @@ public class ChurrascoServiceImpl implements ChurrascoService {
 
     // UPDATE
     public void atualizarChurrasco(ChurrascoForm churrascoForm, long id){
-        ChurrascoEntity churrascoEncontrado = this.churrascoRepository.findById(id).orElseThrow(() -> new RuntimeException("Esse churrasco não existe"));
+        ChurrascoEntity churrascoEncontrado = this.churrascoRepository
+                .findById(id).orElseThrow(() -> new RuntimeException("Esse churrasco não existe"));
 
-        churrascoEncontrado.setIdLocal(churrascoForm.getIdLocal());
+        churrascoEncontrado.setIdLugar(churrascoForm.getIdLugar());
         churrascoEncontrado.setDataFim(LocalDateTime.parse(churrascoForm.getDataFim()));
         churrascoEncontrado.setDataInicio(LocalDateTime.parse(churrascoForm.getDataInicio()));
         churrascoEncontrado.setIdAnfitriao(churrascoForm.getIdAnfitriao());
-        churrascoEncontrado.setIdLocal(churrascoForm.getIdLocal());
 
         this.churrascoRepository.save(churrascoEncontrado);
     }

@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "pessoa", schema = "public")
+@Table(name = "pessoa", schema = "atividade_fixacao")
 public class PessoaEntity {
 
     @Id
@@ -23,7 +23,7 @@ public class PessoaEntity {
 
     // situacao VARCHAR(20),
     @Column
-    private String situacao; // fazer referencia ao enum
+    private Situacao situacao; // fazer referencia ao enum
 
     // telefone VARCHAR(15),
     @Column
@@ -31,7 +31,7 @@ public class PessoaEntity {
 
     // locomocao VARCHAR(20),
     @Column
-    private String locomocao; // fazer referencia ao enum
+    private Locomocao locomocao; // fazer referencia ao enum
 
     // data_confirmacao VARCHAR(11),
     @Column(name = "data_confirmacao")

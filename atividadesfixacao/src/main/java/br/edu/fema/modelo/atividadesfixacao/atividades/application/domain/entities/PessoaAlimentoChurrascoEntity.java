@@ -5,7 +5,7 @@ import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.entiti
 import jakarta.persistence.*;
 
 @jakarta.persistence.Entity
-@Table(name = "pessoa_alimento_xhurrasco", schema = "public")
+@Table(name = "pessoa_alimento_xhurrasco", schema = "atividade_fixacao")
 public class PessoaAlimentoChurrascoEntity {
 
     @EmbeddedId

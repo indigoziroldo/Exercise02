@@ -44,19 +44,6 @@ public class AlimentoController {
      */
 
 
-    // READ
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @GetMapping(path = "/buscar-todos-alimentos")
-    public List<AlimentoDTO> buscarTodosOsAlimentos(){
-        return this.alimentoService.buscarTodosOsAlimentos();
-    }
-
-    // READ BY ID
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @GetMapping(path = "/buscar-alimentos-por-id/{id}")
-    public AlimentoDTO alimentoPorId(@PathVariable UUID id){
-        return null;
-    }
 
     // CREATE
     @ResponseStatus(HttpStatus.CREATED)
@@ -65,21 +52,27 @@ public class AlimentoController {
         this.alimentoService.criarAlimento(alimentoForm);
     }
 
-    // DELETE
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping(path = "/deletar-alimento/{id}")
-    public String deletarAlimentoPorId(@PathVariable UUID id){
-        alimentoService.deletarAlimentoPorId(id);
-        return "Deletado";
+    // READ
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @GetMapping(path = "/buscarAlimentos")
+    public List<AlimentoDTO> buscarTodosOsAlimentos(){
+        return this.alimentoService.buscarTodosOsAlimentos();
     }
 
     // UPDATE
     @ResponseStatus(HttpStatus.MOVED_PERMANENTLY)
-    @PutMapping(path = "/atualizar-alimento/{id}")
+    @PutMapping(path = "/atualizarAlimento/{id}")
     public void atualizarAlimento(@RequestBody AlimentoForm alimentoForm,
                                   @PathVariable UUID id){
         alimentoService.atualizarAlimento(alimentoForm, id);
     }
 
+    // DELETE
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping(path = "/deletarAlimento/{id}")
+    public String deletarAlimentoPorId(@PathVariable UUID id){
+        alimentoService.deletarAlimentoPorId(id);
+        return "Deletado";
+    }
 
 }

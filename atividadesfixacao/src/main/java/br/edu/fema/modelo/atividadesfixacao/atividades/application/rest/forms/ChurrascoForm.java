@@ -12,6 +12,6 @@ public class ChurrascoForm {
     @NotNull(message = "Campo não pode ser nulo")
     private String dataInicio;
     private String dataFim;
-    private UUID idLocal;
+    private UUID idLugar;
     private long idAnfitriao;
 }

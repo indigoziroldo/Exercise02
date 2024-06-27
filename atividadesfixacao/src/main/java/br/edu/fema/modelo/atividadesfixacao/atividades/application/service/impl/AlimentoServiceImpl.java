@@ -46,13 +46,6 @@ public class AlimentoServiceImpl implements AlimentoService {
     }
 
 
-//    // READ BY ID
-//    public AlimentoEntity buscarAlimentoPorId(UUID id){
-//        Optional<AlimentoEntity> alimentoPorId = alimentoRepository.findById(id);
-//        if(alimentoPorId.isEmpty()) throw new RuntimeException("esse Alimento não existe");
-//        return AlimentoRepository.save(alimentoPorId);
-//    }
-
     // UPDATE
     @Override
     public void atualizarAlimento(AlimentoForm alimentoForm, UUID id) {
@@ -61,13 +54,6 @@ public class AlimentoServiceImpl implements AlimentoService {
 
         alimentoRepository.save(converterFormParaEntity(alimentoForm, id));
     }
-
-    // DELETE
-    @Override
-    public void deletarAlimentoPorId(UUID id) {
-        alimentoRepository.deleteById(id);
-    }
-
     public AlimentoEntity converterFormParaEntity(AlimentoForm formToEntity, UUID id){
         AlimentoEntity alimentoEntity = new AlimentoEntity();
         alimentoEntity.setId(id);
@@ -75,11 +61,20 @@ public class AlimentoServiceImpl implements AlimentoService {
         alimentoEntity.setValor(formToEntity.getValorAlimento());
         alimentoEntity.setIdTipoAlimento(formToEntity.getIdTipoAlimento());
         alimentoEntity.setTipoAlimento(
-                tipoAlimentoRepository.findById(formToEntity.getIdTipoAlimento())
+                tipoAlimentoRepository
+                        .findById(
+                            formToEntity.getIdTipoAlimento())
                         .orElseThrow(
-                                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tipo alimento não encontrado!")));
+                                () -> new ResponseStatusException(
+                                        HttpStatus.NOT_FOUND,
+                                        "Tipo alimento não encontrado!")));
         return alimentoEntity;
     }
 
+    // DELETE
+    @Override
+    public void deletarAlimentoPorId(UUID id) {
+        alimentoRepository.deleteById(id);
+    }
 
 }

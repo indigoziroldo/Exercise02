@@ -11,13 +11,13 @@ import java.util.List;
 @AllArgsConstructor @ToString
 
 @Entity
-@Table(name = "tipo_comes_e_bebes")
+@Table(name = "tipo_comes_e_bebes", schema = "atividade_fixacao")
 public class TipoAlimentoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
-    private long id; // ta long no Repository
+    private Long id; // ta long no Repository
 
     @Column
     private String descricao;
