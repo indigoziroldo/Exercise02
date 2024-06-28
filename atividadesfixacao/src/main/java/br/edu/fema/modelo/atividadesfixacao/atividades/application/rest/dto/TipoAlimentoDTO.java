@@ -11,9 +11,12 @@ import java.util.stream.Collectors;
 @Setter
 public class TipoAlimentoDTO {
 
+    private Long id;
+
     private String descricao;
 
     public TipoAlimentoDTO(TipoAlimentoEntity tipoAlimentoEntity){
+        this.id = tipoAlimentoEntity.getId();
         this.descricao = tipoAlimentoEntity.getDescricao();
     }
 

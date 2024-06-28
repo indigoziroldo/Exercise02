@@ -16,7 +16,6 @@ public class TipoAlimentoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE)
     private Long id; // ta long no Repository
 
     @Column
