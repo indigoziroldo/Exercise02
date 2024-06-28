@@ -13,5 +13,5 @@ public class ChurrascoForm {
     private String dataInicio;
     private String dataFim;
     private UUID idLugar;
-    private long idAnfitriao;
+    private Long idAnfitriao;
 }

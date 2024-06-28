@@ -100,11 +100,12 @@ public class ChurrascoServiceImpl implements ChurrascoService {
         churrascoCriado.setIdAnfitriao(churrascoForm.getIdAnfitriao());
         churrascoCriado.setDataInicio(LocalDateTime.parse(churrascoForm.getDataInicio()));
         churrascoCriado.setDataFim(LocalDateTime.parse(churrascoForm.getDataFim()));
+        churrascoCriado.setIdLugar(churrascoForm.getIdLugar());
         this.churrascoRepository.save(churrascoCriado);
     }
 
 //     READ
-    public List<ChurrascoDTO> buscarTodosOsChurrascos(){
+    public List<ChurrascoDTO> buscarChurrascos(){
         List<ChurrascoEntity> listadeChurrascos = this.churrascoRepository.findAll();
         if(listadeChurrascos.isEmpty()) throw new RuntimeException("Lista de churrasco está vazia");
         return ChurrascoDTO.converter(listadeChurrascos);

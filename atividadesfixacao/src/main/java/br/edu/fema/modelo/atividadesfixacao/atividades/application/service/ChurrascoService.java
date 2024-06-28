@@ -22,7 +22,7 @@ public interface ChurrascoService {
     void criarChurrasco(ChurrascoForm churrascoForm);
 
     // READ
-    List<ChurrascoDTO> buscarTodosOsChurrascos();
+    List<ChurrascoDTO> buscarChurrascos();
 
     // UPDATE
     void atualizarChurrasco(ChurrascoForm churrascoForm, long id);

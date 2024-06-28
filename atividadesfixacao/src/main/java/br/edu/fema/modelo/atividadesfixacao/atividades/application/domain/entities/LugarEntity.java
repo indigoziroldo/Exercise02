@@ -17,7 +17,6 @@ public class LugarEntity {
     // ID
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Setter(AccessLevel.NONE)
     private UUID id;
 
     //    vagas_estacionamento INTEGER,
@@ -34,6 +33,5 @@ public class LugarEntity {
 
     @Embedded
     private Endereco endereco;
-
 
 }

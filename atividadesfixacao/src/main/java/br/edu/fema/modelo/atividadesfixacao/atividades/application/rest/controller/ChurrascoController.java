@@ -78,8 +78,8 @@ public class ChurrascoController {
     // READ
     @ResponseStatus(HttpStatus.ACCEPTED)
     @GetMapping(path = "/buscarChurrascos")
-    public List<ChurrascoDTO> buscarTodosOsChurrascos(){
-        return this.churrascoService.buscarTodosOsChurrascos();
+    public List<ChurrascoDTO> buscarChurrascos(){
+        return this.churrascoService.buscarChurrascos();
     }
 
     // UPDATE
