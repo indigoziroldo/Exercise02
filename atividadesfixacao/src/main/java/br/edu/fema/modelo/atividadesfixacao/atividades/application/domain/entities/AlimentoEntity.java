@@ -28,6 +28,9 @@ public class AlimentoEntity {
     @Column
     private BigDecimal valor;
 
+    @Column
+    private String quantidade;
+
     @Column(name = "id_tipo_alimento")
     private Long idTipoAlimento;
 

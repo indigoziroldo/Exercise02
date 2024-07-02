@@ -9,7 +9,7 @@ import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.forms.Ch
 import java.util.List;
 
 public interface ChurrascoService {
-    List<ChurrascoEntity> buscarTodosChurrascos();
+    //List<ChurrascoEntity> buscarTodosChurrascos();
 
     List<ChurrascoEntity> buscarTodosChurrascosPorData(String dataBusca);
 
@@ -25,8 +25,8 @@ public interface ChurrascoService {
     List<ChurrascoDTO> buscarChurrascos();
 
     // UPDATE
-    void atualizarChurrasco(ChurrascoForm churrascoForm, long id);
+    void atualizarChurrasco(ChurrascoForm churrascoForm, Long id);
 
     // DELETE
-    void deletarChurrascoPorId(long id);
+    void deletarChurrascoPorId(Long id);
 }

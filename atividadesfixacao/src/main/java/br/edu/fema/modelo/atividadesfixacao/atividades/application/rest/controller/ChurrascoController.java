@@ -84,8 +84,8 @@ public class ChurrascoController {
 
     // UPDATE
     @ResponseStatus(HttpStatus.MOVED_PERMANENTLY)
-    @PutMapping(path = "/atualizarChurrasco/{id}")
-    public void atualizarChurrasco(@RequestBody ChurrascoForm churrascoForm, @PathVariable long id){
+    @PostMapping(path = "/atualizarChurrasco/{id}")
+    public void atualizarChurrasco(@RequestBody ChurrascoForm churrascoForm, @PathVariable Long id){
         churrascoService.atualizarChurrasco(churrascoForm, id);
     }
 
@@ -93,7 +93,7 @@ public class ChurrascoController {
     // DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(path = "/deletarChurrasco/{id}")
-    public String deletarChurrascoPorId(@PathVariable long id){
+    public String deletarChurrascoPorId(@PathVariable Long id){
         churrascoService.deletarChurrascoPorId(id);
         return "Deletado";
     }

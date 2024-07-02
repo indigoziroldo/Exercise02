@@ -23,12 +23,15 @@ public class AlimentoDTO {
 
     private BigDecimal valor;
 
+    private String quantidade;
+
     private TipoAlimentoDTO tipoAlimentoDTO;
 
     public AlimentoDTO(AlimentoEntity alimentoEntity){
         this.id = alimentoEntity.getId();
         this.descricao = alimentoEntity.getDescricao();
         this.valor = alimentoEntity.getValor();
+        this.quantidade = alimentoEntity.getQuantidade();
         this.tipoAlimentoDTO = new TipoAlimentoDTO(alimentoEntity.getTipoAlimento());
     }
 

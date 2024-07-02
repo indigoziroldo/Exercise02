@@ -33,6 +33,7 @@ public class AlimentoServiceImpl implements AlimentoService {
         AlimentoEntity alimentoCriado = new AlimentoEntity();
         alimentoCriado.setDescricao(alimentoForm.getDescricao());
         alimentoCriado.setValor(alimentoForm.getValorAlimento());
+        alimentoCriado.setQuantidade(alimentoForm.getQuantidade());
         alimentoCriado.setIdTipoAlimento(alimentoForm.getIdTipoAlimento());
         this.alimentoRepository.save(alimentoCriado);
     }
@@ -59,6 +60,7 @@ public class AlimentoServiceImpl implements AlimentoService {
         alimentoEntity.setId(id);
         alimentoEntity.setDescricao(formToEntity.getDescricao());
         alimentoEntity.setValor(formToEntity.getValorAlimento());
+        alimentoEntity.setQuantidade(formToEntity.getQuantidade());
         alimentoEntity.setIdTipoAlimento(formToEntity.getIdTipoAlimento());
         alimentoEntity.setTipoAlimento(
                 tipoAlimentoRepository

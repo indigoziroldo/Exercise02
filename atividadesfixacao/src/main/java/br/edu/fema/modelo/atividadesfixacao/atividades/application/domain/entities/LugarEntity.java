@@ -21,11 +21,11 @@ public class LugarEntity {
 
     //    vagas_estacionamento INTEGER,
     @Column(name = "vagas_estacionamento")
-    private int vagasEstacionamento;
+    private Integer vagasEstacionamento;
 
     //    limite_de_pessoas INTEGER,
     @Column(name = "limite_de_pessoas")
-    private int limiteDePessoas;
+    private Integer limiteDePessoas;
 
     //    valor DECIMAL(5,2),
     @Column

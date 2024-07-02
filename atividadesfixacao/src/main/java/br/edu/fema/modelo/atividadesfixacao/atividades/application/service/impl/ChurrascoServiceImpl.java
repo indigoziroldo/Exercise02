@@ -29,10 +29,10 @@ public class ChurrascoServiceImpl implements ChurrascoService {
     //public List<ChurrascoEntity> listaChurrasco = this.churrascoRepository.findAll();
     //public List<PessoaEntity> listaPessoa = this.pessoaRepository.findAll();
 
-    @Override
-    public List<ChurrascoEntity> buscarTodosChurrascos() {
-        return churrascoRepository.findAll();
-    }
+//    @Override
+//    //public List<ChurrascoEntity> buscarTodosChurrascos() {
+//        return churrascoRepository.findAll();
+//    }
 
     @Override
     public List<ChurrascoEntity> buscarTodosChurrascosPorData(String dataBusca) {
@@ -98,8 +98,8 @@ public class ChurrascoServiceImpl implements ChurrascoService {
     public void criarChurrasco(ChurrascoForm churrascoForm){
         ChurrascoEntity churrascoCriado = new ChurrascoEntity();
         churrascoCriado.setIdAnfitriao(churrascoForm.getIdAnfitriao());
-        churrascoCriado.setDataInicio(LocalDateTime.parse(churrascoForm.getDataInicio()));
-        churrascoCriado.setDataFim(LocalDateTime.parse(churrascoForm.getDataFim()));
+        churrascoCriado.setDataInicio(LocalDateTime.parse(churrascoForm.getDataInicio(), formatter));
+        churrascoCriado.setDataFim(LocalDateTime.parse(churrascoForm.getDataFim(), formatter));
         churrascoCriado.setIdLugar(churrascoForm.getIdLugar());
         this.churrascoRepository.save(churrascoCriado);
     }
@@ -112,20 +112,20 @@ public class ChurrascoServiceImpl implements ChurrascoService {
     }
 
     // UPDATE
-    public void atualizarChurrasco(ChurrascoForm churrascoForm, long id){
+    public void atualizarChurrasco(ChurrascoForm churrascoForm, Long id){
         ChurrascoEntity churrascoEncontrado = this.churrascoRepository
                 .findById(id).orElseThrow(() -> new RuntimeException("Esse churrasco não existe"));
 
         churrascoEncontrado.setIdLugar(churrascoForm.getIdLugar());
-        churrascoEncontrado.setDataFim(LocalDateTime.parse(churrascoForm.getDataFim()));
-        churrascoEncontrado.setDataInicio(LocalDateTime.parse(churrascoForm.getDataInicio()));
+        churrascoEncontrado.setDataFim(LocalDateTime.parse(churrascoForm.getDataFim(), formatter));
+        churrascoEncontrado.setDataInicio(LocalDateTime.parse(churrascoForm.getDataInicio(), formatter));
         churrascoEncontrado.setIdAnfitriao(churrascoForm.getIdAnfitriao());
 
         this.churrascoRepository.save(churrascoEncontrado);
     }
 
     // DELETE
-    public void deletarChurrascoPorId(long id){
+    public void deletarChurrascoPorId(Long id){
         churrascoRepository.deleteById(id);
     }
 

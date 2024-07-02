@@ -23,16 +23,17 @@ public class LugarServiceImpl implements LugarService {
     @Override
     @Transactional
     public void criarLugar(LugarForm lugarForm) {
-        LugarEntity lugarEntity = new LugarEntity();
-        lugarEntity.setVagasEstacionamento(lugarForm.getVagasEstacionamento());
-        lugarEntity.setLimiteDePessoas(lugarForm.getLimiteDePessoas());
-        lugarEntity.setValor(lugarForm.getValor());
-        lugarEntity.getEndereco().setRua(lugarForm.getRua());
-        lugarEntity.getEndereco().setNumero(lugarForm.getNumero());
-        lugarEntity.getEndereco().setCep(lugarForm.getCep());
-        lugarEntity.getEndereco().setCidade(lugarForm.getCidade());
-        lugarEntity.getEndereco().setEstado(lugarForm.getEstado());
-        lugarEntity.getEndereco().setComplemento(lugarForm.getComplemento());
+        LugarEntity lugarCriado = new LugarEntity();
+        lugarCriado.setVagasEstacionamento(lugarForm.getVagasEstacionamento());
+        lugarCriado.setLimiteDePessoas(lugarForm.getLimiteDePessoas());
+        lugarCriado.setValor(lugarForm.getValor());
+        lugarCriado.getEndereco().setRua(lugarForm.getRua());
+        lugarCriado.getEndereco().setNumero(lugarForm.getNumero());
+        lugarCriado.getEndereco().setCep(lugarForm.getCep());
+        lugarCriado.getEndereco().setCidade(lugarForm.getCidade());
+        lugarCriado.getEndereco().setEstado(lugarForm.getEstado());
+        lugarCriado.getEndereco().setComplemento(lugarForm.getComplemento());
+        this.lugarRepository.save(lugarCriado);
     }
 
     @Override
