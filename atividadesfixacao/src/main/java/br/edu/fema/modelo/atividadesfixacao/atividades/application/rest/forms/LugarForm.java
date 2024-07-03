@@ -9,15 +9,11 @@ import java.util.UUID;
 @Getter
 public class LugarForm {
 
-    @NotNull(message = "Não pode ser nulo")
-    private String rua;
-    private String cep;
-    private String cidade;
-    private String numero;
-    private String estado;
-    private String complemento;
+
     private Integer vagasEstacionamento;
     private Integer limiteDePessoas;
     private BigDecimal valor;
+
+    private EnderecoForm enderecoForm;
 
 }

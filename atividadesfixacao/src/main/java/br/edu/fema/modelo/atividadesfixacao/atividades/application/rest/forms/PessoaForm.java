@@ -9,6 +9,7 @@ import lombok.Getter;
 public class PessoaForm {
 
     @NotNull(message = "Campo não pode ser null")
+
     private Long id;
     private String nome;
     private Situacao situacao;

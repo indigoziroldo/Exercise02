@@ -1,8 +1,10 @@
 package br.edu.fema.modelo.atividadesfixacao.atividades.application.service.impl;
 
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.entities.LugarEntity;
+import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.entities.embbedable.Endereco;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.domain.repository.LugarRepository;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.dto.LugarDTO;
+import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.forms.EnderecoForm;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.rest.forms.LugarForm;
 import br.edu.fema.modelo.atividadesfixacao.atividades.application.service.LugarService;
 import lombok.RequiredArgsConstructor;
@@ -24,16 +26,25 @@ public class LugarServiceImpl implements LugarService {
     @Transactional
     public void criarLugar(LugarForm lugarForm) {
         LugarEntity lugarCriado = new LugarEntity();
+        Endereco endereco = this.converterEnderecoFormParaEntity(lugarForm.getEnderecoForm());
         lugarCriado.setVagasEstacionamento(lugarForm.getVagasEstacionamento());
         lugarCriado.setLimiteDePessoas(lugarForm.getLimiteDePessoas());
         lugarCriado.setValor(lugarForm.getValor());
-        lugarCriado.getEndereco().setRua(lugarForm.getRua());
-        lugarCriado.getEndereco().setNumero(lugarForm.getNumero());
-        lugarCriado.getEndereco().setCep(lugarForm.getCep());
-        lugarCriado.getEndereco().setCidade(lugarForm.getCidade());
-        lugarCriado.getEndereco().setEstado(lugarForm.getEstado());
-        lugarCriado.getEndereco().setComplemento(lugarForm.getComplemento());
+        lugarCriado.setEndereco(endereco);
+
         this.lugarRepository.save(lugarCriado);
+    }
+
+    private Endereco converterEnderecoFormParaEntity(EnderecoForm formToEntity) {
+        Endereco endereco = new Endereco();
+        endereco.setRua(formToEntity.getRua());
+        endereco.setEstado(formToEntity.getEstado());
+        endereco.setComplemento(formToEntity.getComplemento());
+        endereco.setCidade(formToEntity.getCidade());
+        endereco.setCep(formToEntity.getCep());
+        endereco.setNumero(formToEntity.getNumero());
+
+        return endereco;
     }
 
     @Override
@@ -51,18 +62,15 @@ public class LugarServiceImpl implements LugarService {
     }
 
     private LugarEntity converterFormParaEntity(LugarForm formToEntity, UUID id) {
-        LugarEntity lugarEntity = new LugarEntity();
-        lugarEntity.setId(id);
-        lugarEntity.setVagasEstacionamento(formToEntity.getVagasEstacionamento());
-        lugarEntity.setLimiteDePessoas(formToEntity.getLimiteDePessoas());
-        lugarEntity.setValor(formToEntity.getValor());
-        lugarEntity.getEndereco().setRua(formToEntity.getRua());
-        lugarEntity.getEndereco().setNumero(formToEntity.getNumero());
-        lugarEntity.getEndereco().setCep(formToEntity.getCep());
-        lugarEntity.getEndereco().setCidade(formToEntity.getCidade());
-        lugarEntity.getEndereco().setEstado(formToEntity.getEstado());
-        lugarEntity.getEndereco().setComplemento(formToEntity.getComplemento());
-        return lugarEntity;
+        LugarEntity lugarCriado = new LugarEntity();
+        Endereco endereco = this.converterEnderecoFormParaEntity(formToEntity.getEnderecoForm());
+        lugarCriado.setId(id);
+        lugarCriado.setVagasEstacionamento(formToEntity.getVagasEstacionamento());
+        lugarCriado.setLimiteDePessoas(formToEntity.getLimiteDePessoas());
+        lugarCriado.setValor(formToEntity.getValor());
+        lugarCriado.setEndereco(endereco);
+
+        return lugarCriado;
     }
 
     @Override
