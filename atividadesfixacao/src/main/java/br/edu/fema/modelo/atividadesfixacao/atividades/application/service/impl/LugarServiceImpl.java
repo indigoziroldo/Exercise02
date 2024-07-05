@@ -26,7 +26,7 @@ public class LugarServiceImpl implements LugarService {
     @Transactional
     public void criarLugar(LugarForm lugarForm) {
         LugarEntity lugarCriado = new LugarEntity();
-        Endereco endereco = this.converterEnderecoFormParaEntity(lugarForm.getEnderecoForm());
+        Endereco endereco = this.converterEnderecoFormParaEntity(lugarForm.getEndereco());
         lugarCriado.setVagasEstacionamento(lugarForm.getVagasEstacionamento());
         lugarCriado.setLimiteDePessoas(lugarForm.getLimiteDePessoas());
         lugarCriado.setValor(lugarForm.getValor());
@@ -61,13 +61,13 @@ public class LugarServiceImpl implements LugarService {
         lugarRepository.save(converterFormParaEntity(lugarForm, id));
     }
 
-    private LugarEntity converterFormParaEntity(LugarForm formToEntity, UUID id) {
+    private LugarEntity converterFormParaEntity(LugarForm lugarForm, UUID id) {
         LugarEntity lugarCriado = new LugarEntity();
-        Endereco endereco = this.converterEnderecoFormParaEntity(formToEntity.getEnderecoForm());
+        Endereco endereco = this.converterEnderecoFormParaEntity(lugarForm.getEndereco());
         lugarCriado.setId(id);
-        lugarCriado.setVagasEstacionamento(formToEntity.getVagasEstacionamento());
-        lugarCriado.setLimiteDePessoas(formToEntity.getLimiteDePessoas());
-        lugarCriado.setValor(formToEntity.getValor());
+        lugarCriado.setVagasEstacionamento(lugarForm.getVagasEstacionamento());
+        lugarCriado.setLimiteDePessoas(lugarForm.getLimiteDePessoas());
+        lugarCriado.setValor(lugarForm.getValor());
         lugarCriado.setEndereco(endereco);
 
         return lugarCriado;

@@ -33,8 +33,10 @@ public class ChurrascoController {
     }
 
     @GetMapping("/buscarTodosEntreDuasDatas/")
-    public List<ChurrascoEntity> buscarTodosChurrascosEntreDuasDatas(@RequestParam(name = "dataInicio") String dataBuscaInicio,
-                                                                     @RequestParam(name = "dataFim") String dataBuscaFim){
+    public List<ChurrascoEntity> buscarTodosChurrascosEntreDuasDatas(@RequestParam(name = "dataInicio")
+                                                                         String dataBuscaInicio,
+                                                                     @RequestParam(name = "dataFim")
+                                                                     String dataBuscaFim){
         return churrascoService.buscarTodosChurrascosEntreDuasDatas(dataBuscaInicio,dataBuscaFim);
     }
 

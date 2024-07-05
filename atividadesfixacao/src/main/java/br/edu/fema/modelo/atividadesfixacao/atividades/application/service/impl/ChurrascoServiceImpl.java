@@ -43,7 +43,8 @@ public class ChurrascoServiceImpl implements ChurrascoService {
     }
 
     @Override
-    public List<ChurrascoEntity> buscarTodosChurrascosEntreDuasDatas(String dataBuscaInicio, String dataBuscaFim) {
+    public List<ChurrascoEntity> buscarTodosChurrascosEntreDuasDatas(String dataBuscaInicio,
+                                                                     String dataBuscaFim) {
         LocalDateTime dataConvertida1 = (LocalDateTime.parse(dataBuscaInicio, formatter));
         LocalDateTime dataConvertida2 = (LocalDateTime.parse(dataBuscaFim, formatter));
         return churrascoRepository

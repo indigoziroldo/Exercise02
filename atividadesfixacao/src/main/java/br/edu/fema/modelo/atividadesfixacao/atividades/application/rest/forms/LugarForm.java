@@ -14,6 +14,6 @@ public class LugarForm {
     private Integer limiteDePessoas;
     private BigDecimal valor;
 
-    private EnderecoForm enderecoForm;
+    private EnderecoForm endereco;
 
 }

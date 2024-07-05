@@ -12,8 +12,8 @@ public class PessoaAlimentoChurrascoEntity {
     private PessoaAlimentoChurrascoId id;
 
     //    quantidade INTEGER,
-    @Column
-    private Integer quantidade;
+//    @Column
+//    private Integer quantidade;
 
     @ManyToOne
     @MapsId("idPessoa")
